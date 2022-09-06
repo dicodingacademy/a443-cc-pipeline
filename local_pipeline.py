@@ -4,19 +4,18 @@ from typing import Text
 
 from absl import logging
 from tfx.orchestration import metadata, pipeline
-from tfx.orchestration.local.local_dag_runner import LocalDagRunner
+from tfx.orchestration.beam.beam_dag_runner import BeamDagRunner
 
 PIPELINE_NAME = "customer-churn-pipeline"
 
 # pipeline inputs
-# root = os.getcwd()
 DATA_ROOT = "data"
 TRANSFORM_MODULE_FILE = "modules/customer_churn_transform.py"
 TRAINER_MODULE_FILE = "modules/customer_churn_trainer.py"
 # requirement_file = os.path.join(root, "requirements.txt")
 
 # pipeline outputs
-OUTPUT_BASE = "output_local"
+OUTPUT_BASE = "output"
 serving_model_dir = os.path.join(OUTPUT_BASE, 'serving_model')
 pipeline_root = os.path.join(OUTPUT_BASE, PIPELINE_NAME)
 metadata_path = os.path.join(pipeline_root, "metadata.sqlite")
@@ -55,11 +54,9 @@ if __name__ == "__main__":
         training_module=TRAINER_MODULE_FILE,
         transform_module=TRANSFORM_MODULE_FILE,
         training_steps=5000,
-        eval_steps=100,
+        eval_steps=1000,
         serving_model_dir=serving_model_dir,
     )
     
     pipeline = init_local_pipeline(components, pipeline_root)
-    LocalDagRunner().run(pipeline=pipeline)
-
-# from tfx.orchestration.portable.outputs_utils
+    BeamDagRunner().run(pipeline=pipeline)
