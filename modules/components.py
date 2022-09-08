@@ -30,6 +30,19 @@ def init_components(
     eval_steps,
     serving_model_dir,
 ):
+    """Initiate tfx pipeline components
+
+    Args:
+        data_dir (str): a path to the data
+        transform_module (str): a path to the transform_module
+        training_module (str): a path to the transform_module
+        training_steps (int): number of training steps
+        eval_steps (int): number of eval steps
+        serving_model_dir (str): a path to the serving model directory
+
+    Returns:
+        TFX components
+    """
     output = example_gen_pb2.Output(
         split_config = example_gen_pb2.SplitConfig(splits=[
             example_gen_pb2.SplitConfig.Split(name="train", hash_buckets=8),
