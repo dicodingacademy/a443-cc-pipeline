@@ -1,3 +1,6 @@
+"""Training module
+"""
+
 import os
 
 import tensorflow as tf
@@ -74,7 +77,7 @@ def get_serve_tf_examples_fn(model, tf_transform_output):
     return serve_tf_examples_fn
 
 def input_fn(file_pattern, tf_transform_output, batch_size=64):
-    """Generates features and label for tuning/training.
+    """Generates features and labels for tuning/training.
     Args:
         file_pattern: input tfrecord file pattern.
         tf_transform_output: A TFTransformOutput.
