@@ -1,7 +1,7 @@
 # a443-cc-pipeline
 Ini adalah repositori untuk latihan pada kelas Machine Learning Operations (MLOps)
 
-- Install CLI heroku
+- Install CLI heroku ([tautan](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli))
 - Login ke heroku melalui CLI dengan perintah berikut.
 ```
 heroku login
