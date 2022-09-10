@@ -1,7 +1,7 @@
 FROM tensorflow/serving:latest
 
 COPY ./output/serving_model /models/cc-model
-COPY ./config/prometheus.config /tmp/model_config
+COPY ./config /tmp/model_config
 ENV MODEL_NAME=cc-model
 
 # RUN mkdir /tmp/model_config

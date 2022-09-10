@@ -10,7 +10,7 @@ import tensorflow_transform as tft
 from customer_churn_transform import (
     CATEGORICAL_FEATURES,
     LABEL_KEY,
-    NUMERICAL_FEATURES,
+    # NUMERICAL_FEATURES,
     transformed_name,
 )
 
@@ -27,10 +27,10 @@ def get_model(show_summary=True):
             tf.keras.Input(shape=(dim + 1,), name=transformed_name(key))
         )
     
-    for feature in NUMERICAL_FEATURES:
-        input_features.append(
-            tf.keras.Input(shape=(1,), name=transformed_name(feature))
-        )
+    # for feature in NUMERICAL_FEATURES:
+    #     input_features.append(
+    #         tf.keras.Input(shape=(1,), name=transformed_name(feature))
+    #     )
     
     concatenate = tf.keras.layers.concatenate(input_features)
     deep = tf.keras.layers.Dense(256, activation="relu")(concatenate)
