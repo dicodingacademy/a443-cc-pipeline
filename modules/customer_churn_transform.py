@@ -13,11 +13,11 @@ CATEGORICAL_FEATURES = {
     "StreamingTV": 3,
     "gender": 2
 }
-# NUMERICAL_FEATURES = [
-#     "MonthlyCharges",
-#     "TotalCharges",
-#     "tenure"
-# ]
+NUMERICAL_FEATURES = [
+    "MonthlyCharges",
+    "TotalCharges",
+    "tenure"
+]
 LABEL_KEY = "Churn"
 
 def transformed_name(key):
@@ -58,8 +58,8 @@ def preprocessing_fn(inputs):
             int_value, num_labels=dim + 1
         )
     
-    # for feature in NUMERICAL_FEATURES:
-    #     outputs[transformed_name(feature)] = tft.scale_to_0_1(inputs[feature])
+    for feature in NUMERICAL_FEATURES:
+        outputs[transformed_name(feature)] = tft.scale_to_0_1(inputs[feature])
     
     
     outputs[transformed_name(LABEL_KEY)] = tf.cast(inputs[LABEL_KEY], tf.int64)
