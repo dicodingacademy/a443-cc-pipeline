@@ -4,11 +4,8 @@ COPY ./output/serving_model /models/cc-model
 COPY ./config /tmp/model_config
 ENV MODEL_NAME=cc-model
 
-# RUN mkdir /tmp/model_config
-# RUN touch /tmp/model_config/monitoring_config.txt
 ENV MONITORING_CONFIG=/tmp/model_config/prometheus.config
 ENV PORT=8501
-# RUN echo MONITORING_CONFIG
 RUN echo '#!/bin/bash \n\n\
 env \n\
 tensorflow_model_server --port=8500 --rest_api_port=${PORT} \
